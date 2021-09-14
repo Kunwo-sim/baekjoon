@@ -28,14 +28,18 @@ int main()
 			int size = dp[i][j];
 			if (square[i][j] == 1 && i != 0 && j != 0)
 			{
+				// 왼쪽과 위쪽 비교
 				size = min(dp[i - 1][j], dp[i][j - 1]);
+				// 대각선 왼쪽위 비교
 				size = min(dp[i - 1][j - 1], size);
 				size++;
 				dp[i][j] = size;
 			}
+			// 최댓값 비교
 			maxlength = max(size, maxlength);
 		}
 	}
+	// 넓이
 	cout << maxlength * maxlength;
 	return 0;
 }
