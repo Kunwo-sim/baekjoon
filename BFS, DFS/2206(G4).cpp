@@ -53,6 +53,7 @@ void bfs() {
 }
 int main()
 {
+    // ют╥б
     cin >> N >> M;
     for (int i = 1; i <= N; i++) {
         string s;
