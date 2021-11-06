@@ -40,13 +40,13 @@ void Init() {
         Dist[i] = INF;
     }
 }
+
 int main()
 {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
     cin >> N >> E;
-    Init();
     int a, b, cost;
     for (int i = 0; i < E; i++) {
         cin >> a >> b >> cost;
@@ -54,55 +54,22 @@ int main()
         Vertex[b].push_back(make_pair(cost, a));
     }
     cin >> v1 >> v2;
+    Init();
     Dijkstra(1);
-    // S to V1, S to V2
+    // 1 to V1, 1 to V2
     int StoV1 = Dist[v1];
     int StoV2 = Dist[v2];
-    // V1 to V2, V1 to E
+    // V1 to V2, V1 to N
     Init();
     Dijkstra(v1);
     int V1toV2 = Dist[v2];
-    int V1toE = Dist[E];
-    // v2 to E
-    int V2toE = Dist[E];
-    // S V1 V2 E와 S V2 V1 E 비교
-    int ans = min(StoV1 + V1toV2 + V2toE, StoV2 + V1toV2 + V1toE);
-    if (ans >= INF) {
-        cout << -1;
-    }
-    else {
-        cout << ans;
-    }
-    return 0;
-}
-}
-int main()
-{
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-
-    cin >> N >> E;
+    int V1toN = Dist[N];
+    // v2 to N
     Init();
-    int a, b, cost;
-    for (int i = 0; i < E; i++) {
-        cin >> a >> b >> cost;
-        Vertex[a].push_back(make_pair(cost, b));
-        Vertex[b].push_back(make_pair(cost, a));
-    }
-    cin >> v1 >> v2;
-    Dijkstra(1);
-    // S to V1, S to V2
-    int StoV1 = Dist[v1];
-    int StoV2 = Dist[v2];
-    // V1 to V2, V1 to E
-    Init();
-    Dijkstra(v1);
-    int V1toV2 = Dist[v2];
-    int V1toE = Dist[E];
-    // v2 to E
-    int V2toE = Dist[E];
+    Dijkstra(v2);
+    int V2toN = Dist[N];
     // S V1 V2 E와 S V2 V1 E 비교
-    int ans = min(StoV1 + V1toV2 + V2toE, StoV2 + V1toV2 + V1toE);
+    int ans = min(StoV1 + V1toV2 + V2toN, StoV2 + V1toV2 + V1toN);
     if (ans >= INF) {
         cout << -1;
     }
