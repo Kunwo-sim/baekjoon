@@ -23,26 +23,17 @@ int main() {
         bool coherent = true;
         for (int i = 0; i < v.size() - 1; i++)
         {
-            coherent = false;
-            if (v[i].size() > v[i + 1].size()) {
-                continue;
-            }
-            for (int j = 0; j < v[i].size(); j++) {
-                if (v[i][j] != v[i + 1][j]) {
-                    // 다르면 일관성이 있음
-                    coherent = true;
-                    break;
-                }
-            }
-            // 모두 같으면 (일관성이 없으면)
-            if (!coherent) {
-                cout << "NO" << '\n';
+            if (v[i] == v[i + 1].substr(0, v[i].length())) {
+                coherent = false;
                 break;
             }
         }
-        // 마지막까지 일관성이 있으면
+        // 일관성이 있으면
         if (coherent) {
             cout << "YES" << '\n';
+        }
+        else {
+            cout << "NO" << '\n';
         }
     }
     return 0;
